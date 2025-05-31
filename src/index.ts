@@ -2,7 +2,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import cookieParser from 'cookie-parser';
 import cors from "cors"
 import { errorHandler } from './middlewares/errorHandler.middlewares';
-import { StatusCodes } from './ProjectStatusCodes';
+import { StatusCodes } from './constants/ProjectStatusCodes';
 import { ApiResponse } from './utils/ApiResponse.utils';
 import { ApiError } from './utils/ApiError.utils';
 import dotenv from "dotenv"

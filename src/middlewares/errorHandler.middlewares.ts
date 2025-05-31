@@ -1,6 +1,6 @@
 import { Request,Response,NextFunction } from "express";
 import { ApiError } from "../utils/ApiError.utils";
-import { StatusCodes } from "../ProjectStatusCodes";
+import { StatusCodes } from "../constants/ProjectStatusCodes";
 import { ErrorRequestHandler } from "express";
 
 export const errorHandler:ErrorRequestHandler = (

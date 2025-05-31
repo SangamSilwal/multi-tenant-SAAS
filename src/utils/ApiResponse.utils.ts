@@ -1,4 +1,4 @@
-import { StatusCodes } from "../ProjectStatusCodes"
+import { StatusCodes } from "../constants/ProjectStatusCodes"
 
 export class ApiResponse<T = any > {
     statusCode : StatusCodes;

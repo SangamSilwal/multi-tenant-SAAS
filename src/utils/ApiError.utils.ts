@@ -1,4 +1,4 @@
-import { StatusCodes } from "../ProjectStatusCodes";
+import { StatusCodes } from "../constants/ProjectStatusCodes";
 
 
 export class ApiError extends Error {
