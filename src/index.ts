@@ -6,7 +6,7 @@ import { StatusCodes } from './constants/ProjectStatusCodes';
 import { ApiResponse } from './utils/ApiResponse.utils';
 import { ApiError } from './utils/ApiError.utils';
 import dotenv from "dotenv"
-
+import {connectDB} from './db/dataBase.db'
 
 
 dotenv.config({
@@ -49,7 +49,18 @@ app.get('/getError',(req:Request,res:Response,next: NextFunction) => {
 
 
 app.use(errorHandler)
-app.listen(process.env.PORT, () => {
-    console.log(process.env.PORT)
-  console.log('Server is definetrly running on port 8000');
-});
+
+connectDB()
+.then(()=>{
+    app.on("error",(error)=>{
+        console.log("Error Before listening",error)
+        throw error
+    })
+    app.listen(process.env.PORT,()=>{
+        console.log("Connected Succefully")
+    })
+})
+.catch((error)=>{
+    console.log("MongoDB connection failed",error)
+})
+
