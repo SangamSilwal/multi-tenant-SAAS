@@ -9,6 +9,7 @@ import dotenv from "dotenv"
 import {connectDB} from './db/dataBase.db'
 
 
+
 dotenv.config({
     path:'./.env'
 })
@@ -50,15 +51,18 @@ app.get('/getError',(req:Request,res:Response,next: NextFunction) => {
 
 app.use(errorHandler)
 
+
+const PORT= process.env.PORT || 8000;
 connectDB()
 .then(()=>{
     app.on("error",(error)=>{
         console.log("Error Before listening",error)
         throw error
     })
-    app.listen(process.env.PORT,()=>{
+    app.listen(PORT,()=>{
         console.log("Connected Succefully")
     })
+    
 })
 .catch((error)=>{
     console.log("MongoDB connection failed",error)
