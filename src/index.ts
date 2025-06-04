@@ -7,6 +7,7 @@ import { ApiResponse } from './utils/ApiResponse.utils';
 import { ApiError } from './utils/ApiError.utils';
 import dotenv from "dotenv"
 import {connectDB} from './db/dataBase.db'
+import { asyncHandler } from './utils/AsynHandler.utils';
 
 
 
@@ -47,6 +48,10 @@ app.get('/', (req: Request, res: Response) => {
 app.get('/getError',(req:Request,res:Response,next: NextFunction) => {
     next(new ApiError(StatusCodes.STATUS_CODE_METHOD_NOT_ALLOWED," Case for api error"))
 })
+
+app.get('/apiError',asyncHandler(async(req,res) => {
+    throw new ApiError(StatusCodes.STATUS_CODE_BAD_GATEWAY,"This is a case for asynch handler with apiError")
+}))
 
 
 app.use(errorHandler)
