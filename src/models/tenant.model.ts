@@ -7,6 +7,11 @@ const TenantSchema = new Schema<Tenant & Document>({
     slug: {type: String,required:true,unique:true},
     plan: {type: String,enum: ['free','pro','enterprise'],default:'free'},
     billingID: String,
+    status:{
+        type:String,
+        enum:['active','suspended','pending'],
+        default:'pending'
+    },
     settings: {
         theme: {type: String,enum:['light','dark'],default:'light'},
         timezone:{type: String, default: 'UTC'},

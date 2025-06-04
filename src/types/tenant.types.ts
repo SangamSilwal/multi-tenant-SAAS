@@ -4,9 +4,9 @@ export interface Tenant {
     _id: ObjectId;
     name: string;
     slug: string;
-    createdAt: Date;
     plan : 'free' | 'pro' | 'enterprise';
     billingID ?: string;
+    status: 'active' | 'suspended' | 'pending',
     settings: {
         theme?: 'light' | 'dark';
         timezone ?: string;
@@ -15,6 +15,8 @@ export interface Tenant {
             customDomain?: boolean;
         };
     };
+    createdAt ?: Date;
+    updatedAt ?: Date;
 }
 
 export interface User {
@@ -24,6 +26,8 @@ export interface User {
     role: 'member' | 'admin' | 'owner';
     authProviderId: string;
     lastLogin?: Date;
+    createdAt ?: Date;
+    updatedAt ?: Date;
 }
 
 export interface Project {
@@ -32,7 +36,19 @@ export interface Project {
     name: string;
     status : 'draft' | 'active' | 'archived';
     members : string[];
-    createdAt: Date;
     metaData?: Record<string,unknown>;
+    createdAt ?: Date;
+    updatedAt ?: Date;
 }
 
+export interface Invite {
+    _id: ObjectId;
+    email: string;
+    tenantId: ObjectId;
+    role: 'member'|'admin';
+    token: string;
+    expiresAt : Date;
+    status : 'pending'|'accepted'|'expired';
+    createdAt ?: Date;
+    updatedAt ?: Date;
+}
