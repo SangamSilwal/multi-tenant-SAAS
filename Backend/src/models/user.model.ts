@@ -2,7 +2,6 @@ import { Schema,Document, model } from "mongoose";
 import { User } from "../types/tenant.types";
 
 const UserSchema = new Schema<User & Document>({
-    tenantId: {type: Schema.Types.ObjectId,ref:'Tenant',required:true},
     email: {type: String, required:true,index:true},
     role:{type: String,enum:['member','admin','owner'],default:'member'},
     authProviderId:{type: String,required:true,unique:true},

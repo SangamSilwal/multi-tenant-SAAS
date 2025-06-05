@@ -8,7 +8,7 @@ import { ApiError } from './utils/ApiError.utils';
 import dotenv from "dotenv"
 import {connectDB} from './db/dataBase.db'
 import { asyncHandler } from './utils/AsynHandler.utils';
-
+import UserRoute from "./routes/routes.auth"
 
 
 dotenv.config({
@@ -35,8 +35,10 @@ app.use(express.urlencoded({
 
 app.use(express.static("public"))
 app.use(cookieParser())
-
-
+import passport from 'passport';
+app.use(passport.initialize());
+app.use("/auth",UserRoute)
+//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
 
 
 
@@ -65,6 +67,9 @@ connectDB()
         throw error
     })
     app.listen(PORT,()=>{
+        console.log("GOOGLE_CLIENT_ID:", process.env.GOOGLE_CLIENT_ID);
+console.log("GOOGLE_CLIENT_SECRET:", process.env.GOOGLE_CLIENT_SECRET);
+
         console.log("Connected Succefully")
     })
     

@@ -21,7 +21,6 @@ export interface Tenant {
 
 export interface User {
     _id: ObjectId;
-    tenantId : ObjectId;
     email : string;
     role: 'member' | 'admin' | 'owner';
     authProviderId: string;
