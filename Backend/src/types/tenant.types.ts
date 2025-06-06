@@ -21,9 +21,16 @@ export interface Tenant {
 
 export interface User {
     _id: ObjectId;
+    name:string;
     email : string;
-    role: 'member' | 'admin' | 'owner';
-    authProviderId: string;
+    password:string;
+    tenantID: ObjectId | null;
+    role: 'member' | 'admin' | 'owner'|null;
+    isVerified:boolean;
+    verificationToken:string;
+    verificationTokenExpires:Date;
+    accessToken:string;
+    refreshToken:string;
     lastLogin?: Date;
     createdAt ?: Date;
     updatedAt ?: Date;
@@ -34,7 +41,7 @@ export interface Project {
     tenantId: ObjectId;
     name: string;
     status : 'draft' | 'active' | 'archived';
-    members : string[];
+    members : ObjectId[];
     metaData?: Record<string,unknown>;
     createdAt ?: Date;
     updatedAt ?: Date;
